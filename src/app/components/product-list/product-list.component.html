@@ -1,0 +1,9 @@
+<p>Sepetinizde {{ cartItems.length }} var</p>
+<div class="row">
+  <div class="col-4" *ngFor="let p of productList">
+    <app-product-card
+      [product]="p"
+      (onBtnClick)="addToCart($event)"
+    ></app-product-card>
+  </div>
+</div>

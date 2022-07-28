@@ -1,0 +1,14 @@
+<div class="card">
+  <img src="..." class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.quantityPerUnit }}</p>
+    <button
+      href="#"
+      class="btn btn-primary"
+      (click)="addToCartEvent(product.contactName)"
+    >
+      Sepete Ekle
+    </button>
+  </div>
+</div>
