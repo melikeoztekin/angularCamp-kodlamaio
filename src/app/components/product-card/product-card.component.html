@@ -1,14 +1,25 @@
-<div class="card">
-  <img src="..." class="card-img-top" alt="..." />
+<div class="card m-2">
   <div class="card-body">
+    <img
+      class="card-img-top"
+      src="https://picsum.photos/300/300"
+      alt="Card image cap"
+    />
     <h5 class="card-title">{{ product.name }}</h5>
-    <p class="card-text">{{ product.quantityPerUnit }}</p>
-    <button
-      href="#"
-      class="btn btn-primary"
-      (click)="addToCartEvent(product.contactName)"
-    >
-      Sepete Ekle
+    <p class="card-text">
+      Units in stock: <span>{{ product.unitsInStock }}</span>
+    </p>
+    <p class="card-text">
+      Category Id: <span>{{ product.categoryId }}</span>
+    </p>
+    <p class="card-text">
+      Supplier Id: <span>{{ product.supplierId }}</span>
+    </p>
+    <h4 class="card-text">
+      <span>$</span><strong>{{ product.unitPrice }}</strong>
+    </h4>
+    <button href="#" class="btn btn-success" (click)="addToCartEvent()">
+      <i class="fa fa-solid fa-shopping-cart"></i> &nbsp;Sepete Ekle
     </button>
   </div>
 </div>

@@ -1,3 +1,4 @@
+import { ProductsService } from './../../services/products/products.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
@@ -8,28 +9,29 @@ import { Product } from 'src/app/models/product';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  productList!: any[];
+  productList!: Product[];
   cartItems: any[] = [];
+  dataLoaded = false;
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    setTimeout(() => {
+      this.getProducts();
+    }, 5000);
   }
 
   getProducts() {
-    this._httpClient
-      .get<Product[]>('http://localhost:3000/products')
-      .subscribe((response) => {
-        this.productList = response;
-        console.log(this.productList);
-      });
+    this._productsService.getList().subscribe((response) => {
+      this.productList = response;
+      this.dataLoaded = true;
+    });
   }
 
-  addToCart(productName: string) {
-    let itemToFind = this.cartItems.find((c) => c == productName);
+  addToCart(product: Product) {
+    let itemToFind = this.cartItems.find((c) => c == name);
     if (!itemToFind) {
-      this.cartItems.push(productName);
+      this.cartItems.push(name);
     }
   }
 }

@@ -1,4 +1,4 @@
-<p>Sepetinizde {{ cartItems.length }} var</p>
+<!-- <p>Sepetinizde {{ cartItems.length }} var</p> -->
 <div class="row">
   <div class="col-4" *ngFor="let p of productList">
     <app-product-card
@@ -7,3 +7,17 @@
     ></app-product-card>
   </div>
 </div>
+
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="alert alert-warning" *ngIf="productList.length == 0" role="alert">
+  Ürün bulunamadı.
+</div>
+<!-- <div *ngIf="productList.length == 0" class="alert alert-warning">
+  <p>Ürün yok</p>
+</div> -->
