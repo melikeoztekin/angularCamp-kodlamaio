@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _customersService: CustomersService
+    private _customersService: CustomersService,
+    private _toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -42,17 +44,18 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.registerForm.invalid) {
-      console.warn('Boş alanları doldurunuz.');
+      this._toastrService.warning('Boş alanları doldurunuz.');
       return;
     }
 
     const customer: Customer = {
       ...this.registerForm.value,
-      city:this.registerForm.value.city.toUpperCase()
+      city: this.registerForm.value.city.toUpperCase(),
     };
 
     this._customersService.add(customer).subscribe((response) => {
       console.info(response);
     });
+    this._toastrService.success('Kayıt işlemi başarılı');
   }
 }

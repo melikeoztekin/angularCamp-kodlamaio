@@ -1,7 +1,7 @@
 import { ProductsService } from './../../services/products/products.service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -13,18 +13,37 @@ export class ProductListComponent implements OnInit {
   cartItems: any[] = [];
   dataLoaded = false;
 
-  constructor(private _productsService: ProductsService) {}
+  constructor(
+    private _productsService: ProductsService,
+    private _activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {
       this.getProducts();
-    }, 5000);
+      this.getProductsByCategory();
+    }, 2000);
   }
 
   getProducts() {
     this._productsService.getList().subscribe((response) => {
       this.productList = response;
       this.dataLoaded = true;
+    });
+  }
+
+  //* kategori id ye göre ürünleri listeleme
+  getProductsByCategory() {
+    this._productsService.getList().subscribe((data) => {
+      this._activatedRoute.params.subscribe((param) => {
+        if (param['id']) {
+          this.productList = data.filter(
+            (item) => item.categoryId == param['id']
+          );
+        } else {
+          this.productList = data;
+        }
+      });
     });
   }
 

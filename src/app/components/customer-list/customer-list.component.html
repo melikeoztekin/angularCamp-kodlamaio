@@ -1,0 +1,8 @@
+<div class="row mb-3">
+  <button class="btn btn-success" routerLink="/register">Add Customer</button>
+</div>
+<div class="row">
+  <div class="col-12" *ngFor="let cs of customerList">
+    <app-customer-card [customer]="cs"></app-customer-card>
+  </div>
+</div>

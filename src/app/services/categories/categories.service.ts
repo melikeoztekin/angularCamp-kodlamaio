@@ -15,8 +15,4 @@ export class CategoriesService {
   getList(): Observable<Category[]> {
     return this._httpClient.get<Category[]>(this.apiControllerUrl);
   }
-
-  // getProductByIdCategory(id: number): Observable<Category> {
-  //   return this._httpClient.get<Category>(`${this.apiControllerUrl}/${id}`);
-  // }
 }

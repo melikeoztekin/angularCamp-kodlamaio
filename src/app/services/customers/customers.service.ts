@@ -12,6 +12,10 @@ export class CustomersService {
 
   constructor(private _httpClient: HttpClient) {}
 
+  getList(): Observable<Customer[]> {
+    return this._httpClient.get<Customer[]>(this.apiControllerUrl);
+  }
+
   add(customer: Customer): Observable<Customer> {
     return this._httpClient.post<Customer>(this.apiControllerUrl, customer);
   }

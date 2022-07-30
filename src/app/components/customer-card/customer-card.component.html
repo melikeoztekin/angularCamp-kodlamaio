@@ -1,0 +1,45 @@
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="https://www.fillmurray.com/640/640
+      "
+        class="img-fluid rounded-start"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h6 class="card-title">{{ customer.companyName }}</h6>
+        <p class="card-title">
+          Contact Name : <strong> {{ customer.contactName }}</strong>
+        </p>
+        <p class="card-title">
+          Contact Title : <strong> {{ customer.contactTitle }}</strong>
+        </p>
+        <p class="card-text">
+          Address :
+          <strong>
+            {{ customer.street }} {{ customer.city }}
+            {{ customer.country }}</strong
+          >
+        </p>
+        <p class="card-text">
+          Phone : <strong>{{ customer.phone }}</strong>
+        </p>
+        <p class="card-text">
+          Postal Code : <strong>{{ customer.postalCode }}</strong>
+        </p>
+        <button
+          class="btn btn-primary"
+          routerLink="/customers/{{ customer.id }}"
+        >
+          <i class="fa fa-solid fa-pencil"></i>Edit
+        </button>
+        <button class="btn btn-danger">
+          <i class="fa fa-solid fa-trash"></i>Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

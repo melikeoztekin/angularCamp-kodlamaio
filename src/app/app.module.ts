@@ -12,6 +12,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomerCardComponent } from './components/customer-card/customer-card.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { UpdateCustomerComponent } from './pages/update-customer/update-customer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,9 @@ import { RegisterComponent } from './pages/register/register.component';
     ProductCardComponent,
     CategoryListComponent,
     RegisterComponent,
+    CustomerCardComponent,
+    CustomerListComponent,
+    UpdateCustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +38,8 @@ import { RegisterComponent } from './pages/register/register.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
