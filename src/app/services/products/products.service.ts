@@ -15,6 +15,10 @@ export class ProductsService {
     return this._httpClient.get<Product[]>(this.apiControllerUrl);
   }
 
+  add(product: Product): Observable<Product> {
+    return this._httpClient.post<Product>(this.apiControllerUrl, product);
+  }
+
   getById(id: number): Observable<Product> {
     return this._httpClient.get<Product>(`${this.apiControllerUrl}/${id}`);
   }

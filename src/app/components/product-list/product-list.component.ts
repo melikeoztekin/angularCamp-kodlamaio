@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  productList!: Product[];
+  productList: Product[] = [];
   cartItems: any[] = [];
   dataLoaded = false;
 
@@ -20,8 +20,8 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.getProducts();
       this.getProductsByCategory();
+      this.dataLoaded = true;
     }, 2000);
   }
 

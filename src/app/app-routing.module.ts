@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
   {
     path: 'categories/:id',
-    component: ProductListComponent,
+    component: HomepageComponent,
     pathMatch: 'full',
   },
   {

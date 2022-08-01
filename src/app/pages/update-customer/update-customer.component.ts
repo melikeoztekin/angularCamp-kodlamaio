@@ -1,8 +1,8 @@
-import { CustomersService } from './../../services/customers/customers.service';
+import { Customer } from './../../models/customer';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomersService } from 'src/app/services/customers/customers.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-customer',
@@ -10,9 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./update-customer.component.css'],
 })
 export class UpdateCustomerComponent implements OnInit {
-  updateCustomerForm!: FormGroup;
-
-  constructor(private _customersService: CustomersService) {}
+  customerList: Customer[] = [];
+  constructor() {}
 
   ngOnInit(): void {}
 }

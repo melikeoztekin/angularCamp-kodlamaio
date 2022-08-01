@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/customer';
 
 @Component({
@@ -8,7 +9,13 @@ import { Customer } from 'src/app/models/customer';
 })
 export class CustomerCardComponent implements OnInit {
   @Input() customer!: Customer;
-  constructor() {}
+  @Output() onBtnClick: any = new EventEmitter();
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {}
+
+  deleteCustomerEvent(id: number) {
+    console.log(id);
+    this.onBtnClick.emit(this.customer);
+  }
 }

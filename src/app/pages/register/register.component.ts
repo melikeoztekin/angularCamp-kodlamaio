@@ -50,7 +50,6 @@ export class RegisterComponent implements OnInit {
 
     const customer: Customer = {
       ...this.registerForm.value,
-      city: this.registerForm.value.city.toUpperCase(),
     };
 
     this._customersService.add(customer).subscribe((response) => {

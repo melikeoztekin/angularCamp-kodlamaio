@@ -1,13 +1,4 @@
 <!-- <p>Sepetinizde {{ cartItems.length }} var</p> -->
-<div class="row">
-  <div class="col-4" *ngFor="let p of productList">
-    <app-product-card
-      [product]="p"
-      (onBtnClick)="addToCart($event)"
-    ></app-product-card>
-  </div>
-</div>
-
 <div
   *ngIf="dataLoaded == false"
   class="spinner-border text-primary"
@@ -15,9 +6,36 @@
 >
   <span class="visually-hidden">Loading...</span>
 </div>
-<div class="alert alert-warning" *ngIf="productList.length == 0" role="alert">
-  Ürün bulunamadı.
+<div class="row">
+  <div class="row">
+    <div
+      class="alert alert-success"
+      *ngIf="productList.length > 0"
+      role="alert"
+    >
+      Ürün sayısı {{ productList.length }}
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="alert alert-warning"
+      *ngIf="productList.length == 0 && dataLoaded == true"
+      role="alert"
+    >
+      Ürün bulunamadı.
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col-12 col-sm-12 col-md-6 col-lg-4"
+      *ngFor="let p of productList"
+    >
+      <app-product-card
+        [product]="p"
+        (onBtnClick)="addToCart($event)"
+      ></app-product-card>
+    </div>
+  </div>
 </div>
-<!-- <div *ngIf="productList.length == 0" class="alert alert-warning">
-  <p>Ürün yok</p>
-</div> -->
+
+<!-- ! buradaki length hatalarını unutma -->

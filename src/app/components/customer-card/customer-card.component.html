@@ -36,7 +36,10 @@
         >
           <i class="fa fa-solid fa-pencil"></i>Edit
         </button>
-        <button class="btn btn-danger">
+        <button
+          class="btn btn-danger"
+          (click)="deleteCustomerEvent(customer.id)"
+        >
           <i class="fa fa-solid fa-trash"></i>Delete
         </button>
       </div>

@@ -1,26 +1,105 @@
-<div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">
-      Email address
-    </label>
-    <input
-      [(ngModel)]="email"
-      (ngModelChange)="onEmailChange($event)"
-      type="email"
-      class="form-control"
-      id="exampleFormControlInput1"
-      placeholder="name@example.com" />
-  
-    <p>{{ email }}</p>
-  </div>
-  
+<h2>Add Product</h2>
+<form action="" [formGroup]="addProductForm">
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label"> Password </label>
+    <label for="name" class="form-label">Product Name</label>
     <input
-      [(ngModel)]="password"
-      type="password"
+      type="text"
       class="form-control"
-      id="exampleFormControlInput1"
-      placeholder="name@example.com" />
-  
-    <p>{{ password }}</p>
+      id="name"
+      placeholder=""
+      formControlName="name"
+    />
   </div>
+
+  <div class="mb-3">
+    <label for="categoryId" class="form-label">Category ID</label>
+    <input
+      type="text"
+      class="form-control"
+      id="categoryId"
+      placeholder=""
+      formControlName="categoryId"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="supplierId" class="form-label">Supplier ID</label>
+    <input
+      type="text"
+      class="form-control"
+      id="supplierId"
+      placeholder=""
+      formControlName="supplierId"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="unitPrice" class="form-label">Unit Price</label>
+    <input
+      type="text"
+      class="form-control"
+      id="unitPrice"
+      placeholder=""
+      formControlName="unitPrice"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="unitsInStock" class="form-label">Units In Stock</label>
+    <input
+      type="text"
+      class="form-control"
+      id="unitsInStock"
+      placeholder=""
+      formControlName="unitsInStock"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="quantityPerUnit" class="form-label">Quantity Per Unit</label>
+    <input
+      type="text"
+      class="form-control"
+      id="quantityPerUnit"
+      placeholder=""
+      formControlName="quantityPerUnit"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="unitsOnOrder" class="form-label">Units On Order</label>
+    <input
+      type="text"
+      class="form-control"
+      id="unitsOnOrder"
+      placeholder=""
+      formControlName="unitsOnOrder"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="reorderLevel" class="form-label">Reorder Level</label>
+    <input
+      type="text"
+      class="form-control"
+      id="reorderLevel"
+      placeholder=""
+      formControlName="reorderLevel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="discontinued" class="form-label">Discontinued</label>
+    <input
+      type="text"
+      class="form-control"
+      id="discontinued"
+      placeholder=""
+      formControlName="discontinued"
+    />
+  </div>
+
+  <div class="mb-3">
+    <button class="btn btn-primary" (click)="addProduct()">Ürün Ekle</button>
+  </div>
+</form>
