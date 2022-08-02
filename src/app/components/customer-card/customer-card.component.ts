@@ -15,7 +15,6 @@ export class CustomerCardComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteCustomerEvent(id: number) {
-    console.log(id);
     this.onBtnClick.emit(this.customer);
   }
 }

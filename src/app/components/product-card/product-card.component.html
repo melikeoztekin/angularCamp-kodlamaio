@@ -1,11 +1,11 @@
 <div class="card m-2">
-  <div class="card-body">
+  <div class="card-body" [ngClass]="{ 'card-body': isCard }">
     <img
       class="card-img-top"
       src="https://picsum.photos/300/300"
       alt="Card image cap"
     />
-    <h5 class="card-title">{{ product.name }}</h5>
+    <h5 class="card-title">{{ product.name | uppercase }}</h5>
     <p class="card-text">
       Units in stock: <span>{{ product.unitsInStock }}</span>
     </p>
@@ -15,9 +15,18 @@
     <p class="card-text">
       Supplier Id: <span>{{ product.supplierId }}</span>
     </p>
-    <h4 class="card-text">
-      <span>$</span><strong>{{ product.unitPrice }}</strong>
-    </h4>
+    <p
+      class="card-text"
+      appOnSale
+      [onSaleColor]="onMouseColor"
+      [onSaleText]="onSaleText"
+      [isOnSale]="product.unitPrice < 30"
+    >
+      <!-- <span>İndirim !!! </span> -->
+      <!--  sale.directive.ts selector değiştirdik -->
+      <strong class="h4">{{ product.unitPrice | kdv: 0.18 | currency }}</strong>
+      <small></small>
+    </p>
     <button href="#" class="btn btn-success" (click)="addToCartEvent()">
       <i class="fa fa-solid fa-shopping-cart"></i> &nbsp;Add to cart
     </button>

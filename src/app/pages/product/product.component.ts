@@ -5,12 +5,13 @@ import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css'],
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css'],
 })
-export class AddProductComponent implements OnInit {
+export class ProductComponent implements OnInit {
   addProductForm!: FormGroup;
+
   constructor(
     private _formBuilder: FormBuilder,
     private _productsService: ProductsService,

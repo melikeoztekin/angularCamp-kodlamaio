@@ -1,4 +1,4 @@
-import { Customer } from './../../models/customer';
+import { Customer } from '../../models/customer';
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,12 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-update-customer',
-  templateUrl: './update-customer.component.html',
-  styleUrls: ['./update-customer.component.css'],
+  selector: 'app-customer',
+  templateUrl: './customer.component.html',
+  styleUrls: ['./customer.component.css'],
 })
-export class UpdateCustomerComponent implements OnInit {
-  customerUpdateForm!: FormGroup;
+export class CustomerComponent implements OnInit {
+  customerForm!: FormGroup;
   data!: number;
   selectCustomer!: Customer;
 
@@ -26,18 +26,21 @@ export class UpdateCustomerComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params) => {
       if (params['id']) this.getCustomerById(params['id']);
+      else {
+        this.createcustomerForm();
+      }
     });
   }
 
   getCustomerById(id: number) {
     this._customersService.getById(id).subscribe((data) => {
       this.selectCustomer = data;
-      this.createCustomerUpdateForm();
+      this.createcustomerForm();
     });
   }
 
-  createCustomerUpdateForm() {
-    this.customerUpdateForm = this._formBuilder.group({
+  createcustomerForm() {
+    this.customerForm = this._formBuilder.group({
       companyName: [
         this.selectCustomer?.companyName || '',
         Validators.required,
@@ -63,14 +66,41 @@ export class UpdateCustomerComponent implements OnInit {
     });
   }
 
+  save() {
+    if (this.selectCustomer !== undefined) {
+      this.update();
+    } else {
+      this.register();
+    }
+  }
+
+  register() {
+    if (this.customerForm.invalid) {
+      this._toastrService.warning('Fill in the blank fields.', 'Warning');
+      return;
+    }
+
+    const customer: Customer = {
+      ...this.customerForm.value,
+    };
+
+    this._customersService.add(customer).subscribe((response) => {
+      this._toastrService.success('Registration successful.', 'Successful');
+      setTimeout(() => {
+        this.customerForm.reset();
+        //this._router.navigate(['customers']);
+      }, 2000);
+    });
+  }
+
   update() {
-    if (!this.customerUpdateForm.valid) {
+    if (!this.customerForm.valid) {
       return;
     }
 
     let selectCustomer: Customer = {
       id: this.selectCustomer.id,
-      ...this.customerUpdateForm.value,
+      ...this.customerForm.value,
     };
     this._customersService.update(selectCustomer).subscribe(() => {
       this._toastrService.success(
