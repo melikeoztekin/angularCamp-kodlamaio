@@ -15,8 +15,7 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     public _customersService: CustomersService,
-    private _toastrService: ToastrService,
-    private _router: Router
+    private _toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +33,9 @@ export class CustomerListComponent implements OnInit {
   }
 
   deleteCustomerById(id: number) {
-    console.log('deleteCustomerById çalıştı');
-    if (confirm('silmek istediğine emin misin')) {
+    if (confirm('Are you sure you want to delete?')) {
       this._customersService.delete(id).subscribe((response) => {
-        this._toastrService.error('Customer information deleted successfully.');
+        this._toastrService.error('Customer information deleted.');
         this.getCustomers();
       });
     }

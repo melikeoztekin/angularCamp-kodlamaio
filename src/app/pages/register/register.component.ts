@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { CustomersService } from 'src/app/services/customers/customers.service';
@@ -20,7 +16,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _customersService: CustomersService,
-    private _toastrService: ToastrService
+    private _toastrService: ToastrService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +41,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.registerForm.invalid) {
-      this._toastrService.warning('Boş alanları doldurunuz.');
+      this._toastrService.warning('Fill in the blank fields.', 'Warning');
       return;
     }
 
@@ -53,8 +50,22 @@ export class RegisterComponent implements OnInit {
     };
 
     this._customersService.add(customer).subscribe((response) => {
-      console.info(response);
+      this._toastrService.success('Registration successful.', 'Successful');
+      setTimeout(() => {
+        this.registerForm = this._formBuilder.group({
+          companyName: [''],
+          contactName: [''],
+          contactTitle: [''],
+          street: [''],
+          city: [''],
+          region: [''],
+          postalCode: [''],
+          country: [''],
+          phone: [''],
+          customerKey: [''],
+        });
+        //this._router.navigate(['customers']);
+      }, 2000);
     });
-    this._toastrService.success('Kayıt işlemi başarılı');
   }
 }

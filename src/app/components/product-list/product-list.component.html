@@ -1,19 +1,13 @@
-<!-- <p>Sepetinizde {{ cartItems.length }} var</p> -->
-<div
-  *ngIf="dataLoaded == false"
-  class="spinner-border text-primary"
-  role="status"
->
+<div *ngIf="dataLoaded == false" class="spinner-border text-dark" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
 <div class="row">
-  <div class="row">
-    <div
-      class="alert alert-success"
-      *ngIf="productList.length > 0"
-      role="alert"
-    >
-      Ürün sayısı {{ productList.length }}
+  <div class="row" *ngIf="productList.length > 0">
+    <div class="alert alert-success col-6" role="alert">
+      Total of products : {{ productList.length }}
+    </div>
+    <div class="alert alert-danger col-6" role="alert">
+      There are <strong>{{ cartItems.length }}</strong> products in the cart.
     </div>
   </div>
   <div class="row">
@@ -22,7 +16,7 @@
       *ngIf="productList.length == 0 && dataLoaded == true"
       role="alert"
     >
-      Ürün bulunamadı.
+      The product was not found.
     </div>
   </div>
   <div class="row">
@@ -37,5 +31,3 @@
     </div>
   </div>
 </div>
-
-<!-- ! buradaki length hatalarını unutma -->

@@ -13,7 +13,7 @@
       *ngIf="customerList.length > 0"
       role="alert"
     >
-      Müşteri sayısı {{ customerList.length }}
+      Total customers : {{ customerList.length }}
     </div>
   </div>
   <div class="row">
@@ -22,7 +22,7 @@
       *ngIf="customerList.length == 0 && dataLoaded == true"
       role="alert"
     >
-      Müşteri bulunamadı.
+      Customer not found.
     </div>
   </div>
   <div class="row">

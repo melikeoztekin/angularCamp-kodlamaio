@@ -37,7 +37,7 @@ export class AddProductComponent implements OnInit {
 
   addProduct() {
     if (this.addProductForm.invalid) {
-      this._toastrService.warning('Boş alanları doldurunuz.');
+      this._toastrService.warning('Fill in the blank fields.', 'Warning');
       return;
     }
 
@@ -48,6 +48,6 @@ export class AddProductComponent implements OnInit {
     this._productsService.add(product).subscribe((response) => {
       console.info(response);
     });
-    this._toastrService.success('Yeni ürün ekleme başarılı.');
+    this._toastrService.success('Adding new product successful.', 'Successful');
   }
 }
