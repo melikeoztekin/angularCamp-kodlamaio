@@ -27,7 +27,7 @@ export class CustomerComponent implements OnInit {
     this._activatedRoute.params.subscribe((params) => {
       if (params['id']) this.getCustomerById(params['id']);
       else {
-        this.createcustomerForm();
+        this.createCustomerForm();
       }
     });
   }
@@ -35,11 +35,11 @@ export class CustomerComponent implements OnInit {
   getCustomerById(id: number) {
     this._customersService.getById(id).subscribe((data) => {
       this.selectCustomer = data;
-      this.createcustomerForm();
+      this.createCustomerForm();
     });
   }
 
-  createcustomerForm() {
+  createCustomerForm() {
     this.customerForm = this._formBuilder.group({
       companyName: [
         this.selectCustomer?.companyName || '',
@@ -88,7 +88,6 @@ export class CustomerComponent implements OnInit {
       this._toastrService.success('Registration successful.', 'Successful');
       setTimeout(() => {
         this.customerForm.reset();
-        //this._router.navigate(['customers']);
       }, 2000);
     });
   }

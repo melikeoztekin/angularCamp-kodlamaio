@@ -11,6 +11,7 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
 export class CustomerListComponent implements OnInit {
   customerList: Customer[] = [];
   dataLoaded = false;
+  filterText: string = '';
 
   constructor(
     public _customersService: CustomersService,

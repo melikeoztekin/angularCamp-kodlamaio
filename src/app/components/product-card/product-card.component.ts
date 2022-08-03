@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
-import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
   selector: 'app-product-card',
@@ -10,7 +8,9 @@ import { ProductsService } from 'src/app/services/products/products.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product!: Product;
-  @Output() onBtnClick = new EventEmitter();
+  @Output() onBtnClickAddToCart = new EventEmitter();
+  @Output() onBtnClickDelete = new EventEmitter();
+
   onMouseColor: string = 'blue';
   isCard: boolean = true;
   onSaleText: string = 'İndirim!!!';
@@ -20,6 +20,10 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {}
 
   addToCartEvent() {
-    this.onBtnClick.emit(this.product);
+    this.onBtnClickAddToCart.emit(this.product);
+  }
+
+  deleteProductEvent(id: number) {
+    this.onBtnClickDelete.emit(this.product);
   }
 }

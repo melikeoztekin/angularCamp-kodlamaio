@@ -9,12 +9,12 @@ import { Customer } from 'src/app/models/customer';
 })
 export class CustomerCardComponent implements OnInit {
   @Input() customer!: Customer;
-  @Output() onBtnClick: any = new EventEmitter();
+  @Output() onBtnClickDelete: any = new EventEmitter();
   constructor(private _router: Router) {}
 
   ngOnInit(): void {}
 
   deleteCustomerEvent(id: number) {
-    this.onBtnClick.emit(this.customer);
+    this.onBtnClickDelete.emit(this.customer);
   }
 }

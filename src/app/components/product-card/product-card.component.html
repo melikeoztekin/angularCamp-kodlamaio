@@ -1,4 +1,4 @@
-<div class="card m-2">
+<div class="card m-2" appClickCard>
   <div class="card-body" [ngClass]="{ 'card-body': isCard }">
     <img
       class="card-img-top"
@@ -29,6 +29,20 @@
     </p>
     <button href="#" class="btn btn-success" (click)="addToCartEvent()">
       <i class="fa fa-solid fa-shopping-cart"></i> &nbsp;Add to cart
+    </button>
+    <button
+      href="#"
+      class="btn btn-primary"
+      routerLink="/products/{{ product.id }}"
+    >
+      <i class="fa fa-solid fa-pencil"></i> &nbsp;Edit
+    </button>
+    <button
+      href="#"
+      class="btn btn-danger"
+      (click)="deleteProductEvent(product.id)"
+    >
+      <i class="fa fa-solid fa-trash"></i> &nbsp;Delete
     </button>
   </div>
 </div>

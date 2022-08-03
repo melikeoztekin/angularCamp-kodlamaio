@@ -2,6 +2,7 @@ import { ProductsService } from './../../services/products/products.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +13,12 @@ export class ProductListComponent implements OnInit {
   productList: Product[] = [];
   cartItems: any[] = [];
   dataLoaded = false;
+  filterText: string = '';
 
   constructor(
     private _productsService: ProductsService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +54,15 @@ export class ProductListComponent implements OnInit {
     let itemToFind = this.cartItems.find((c) => c == name);
     if (!itemToFind) {
       this.cartItems.push(name);
+    }
+  }
+
+  deleteProductById(id: number) {
+    if (confirm('Are you sure you want to delete?')) {
+      this._productsService.delete(id).subscribe((response) => {
+        this._toastrService.error('Product information deleted.');
+        this.getProducts();
+      });
     }
   }
 }

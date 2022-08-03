@@ -7,30 +7,41 @@
 </div>
 
 <div class="row">
-  <div class="row">
-    <div
-      class="alert alert-success"
-      *ngIf="customerList.length > 0"
-      role="alert"
-    >
+  <div class="row" *ngIf="customerList.length > 0">
+    <input
+      class="form-control col-12 mb-3"
+      type="text"
+      [(ngModel)]="filterText"
+      placeholder="Search"
+    />
+    <div class="alert alert-success" role="alert">
       Total customers : {{ customerList.length }}
     </div>
   </div>
+
+  <div class="row" *ngIf="customerList.length == 0 && dataLoaded == true">
+    <div class="alert alert-warning" role="alert">Customer not found.</div>
+  </div>
+
   <div class="row">
     <div
-      class="alert alert-warning"
-      *ngIf="customerList.length == 0 && dataLoaded == true"
-      role="alert"
+      class="col-12 col-sm-12 col-md-6"
+      *ngFor="let cs of customerList | searchCustomerFilter: filterText"
     >
-      Customer not found.
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-6" *ngFor="let cs of customerList">
       <app-customer-card
         [customer]="cs"
-        (onBtnClick)="deleteCustomerById(cs.id)"
+        (onBtnClickDelete)="deleteCustomerById(cs.id)"
       ></app-customer-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="customerList.length > 0">
+    <div
+      class="alert alert-secondary"
+      role="alert"
+      *ngIf="(customerList | searchCustomerFilter: filterText).length == 0"
+    >
+      No Result Found!
     </div>
   </div>
 </div>

@@ -18,6 +18,9 @@ import { CustomerListComponent } from './components/customer-list/customer-list.
 import { CustomerComponent } from './pages/customer/customer.component';
 import { KdvPipe } from './pipes/kdv/kdv.pipe';
 import { SaleDirective } from './directives/sale/sale.directive';
+import { SearchCustomerFilterPipe } from './pipes/search-customer-filter/search-customer-filter.pipe';
+import { SearchProductFilterPipe } from './pipes/search-product-filter/search-product-filter.pipe';
+import { ClickCardDirective } from './directives/click-card/click-card.directive';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { SaleDirective } from './directives/sale/sale.directive';
     CustomerComponent,
     KdvPipe,
     SaleDirective,
+    SearchProductFilterPipe,
+    SearchCustomerFilterPipe,
+    ClickCardDirective,
   ],
   imports: [
     BrowserModule,

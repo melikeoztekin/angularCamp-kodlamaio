@@ -19,6 +19,16 @@ export class ProductsService {
     return this._httpClient.post<Product>(this.apiControllerUrl, product);
   }
 
+  delete(id: number): Observable<Product> {
+    return this._httpClient.delete<Product>(`${this.apiControllerUrl}/${id}`);
+  }
+
+  update(product: Product): Observable<Product> {
+    return this._httpClient.put<Product>(
+      `${this.apiControllerUrl}/${product.id}`,
+      product
+    );
+  }
   getById(id: number): Observable<Product> {
     return this._httpClient.get<Product>(`${this.apiControllerUrl}/${id}`);
   }
