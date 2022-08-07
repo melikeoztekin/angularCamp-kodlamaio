@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
   cartItems: any[] = [];
   dataLoaded = false;
   filterText: string = '';
+  status: string = 'init';
 
   constructor(
     private _productsService: ProductsService,
@@ -37,6 +38,7 @@ export class ProductListComponent implements OnInit {
 
   //* kategori id ye göre ürünleri listeleme
   getProductsByCategory() {
+    this.status = 'loading';
     this._productsService.getList().subscribe((data) => {
       this._activatedRoute.params.subscribe((param) => {
         if (param['id']) {
@@ -47,6 +49,8 @@ export class ProductListComponent implements OnInit {
           this.productList = data;
         }
       });
+      this.dataLoaded = true;
+      setTimeout(() => (this.status = 'loaded'), 1000);
     });
   }
 

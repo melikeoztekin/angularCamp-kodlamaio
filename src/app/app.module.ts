@@ -21,6 +21,11 @@ import { SaleDirective } from './directives/sale/sale.directive';
 import { SearchCustomerFilterPipe } from './pipes/search-customer-filter/search-customer-filter.pipe';
 import { SearchProductFilterPipe } from './pipes/search-product-filter/search-product-filter.pipe';
 import { ClickCardDirective } from './directives/click-card/click-card.directive';
+import { IfNotDirective } from './directives/if-not/if-not.directive';
+import { MultipleDirective } from './directives/multiple/multiple.directive';
+import { WelcomeDirective } from './directives/welcome/welcome.directive';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SearchCategoryFilterPipe } from './pipes/search-category-filter/search-category-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import { ClickCardDirective } from './directives/click-card/click-card.directive
     SearchProductFilterPipe,
     SearchCustomerFilterPipe,
     ClickCardDirective,
+    IfNotDirective,
+    MultipleDirective,
+    WelcomeDirective,
+    LoginPageComponent,
+    SearchCategoryFilterPipe,
   ],
   imports: [
     BrowserModule,

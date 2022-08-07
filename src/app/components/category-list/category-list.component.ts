@@ -10,6 +10,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CategoryListComponent implements OnInit {
   categoryList!: Category[];
   dataLoaded = false;
+  filterText: string = '';
+
   constructor(private _categoriesService: CategoriesService) {}
 
   ngOnInit(): void {

@@ -6,11 +6,25 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div class="row" *ngIf="dataLoaded == true">
+  <div class="row" *ngIf="categoryList.length > 0">
+    <input
+      class="form-control col-12 mb-3"
+      type="text"
+      [(ngModel)]="filterText"
+      placeholder="Search"
+    />
+    <div class="alert alert-success" role="alert">
+      Total category : {{ categoryList.length }}
+    </div>
+  </div>
   <div class="row">
     <h5>Categories</h5>
   </div>
   <div class="row">
-    <ul class="list-group" *ngFor="let ct of categoryList">
+    <ul
+      class="list-group"
+      *ngFor="let ct of categoryList | searchCategoryFilter: filterText"
+    >
       <li
         type="button"
         class="list-group-item list-group-item-action"

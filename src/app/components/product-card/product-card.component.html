@@ -27,22 +27,31 @@
       <strong class="h4">{{ product.unitPrice | kdv: 0.18 | currency }}</strong>
       <small></small>
     </p>
-    <button href="#" class="btn btn-success" (click)="addToCartEvent()">
-      <i class="fa fa-solid fa-shopping-cart"></i> &nbsp;Add to cart
-    </button>
-    <button
-      href="#"
-      class="btn btn-primary"
-      routerLink="/products/{{ product.id }}"
-    >
-      <i class="fa fa-solid fa-pencil"></i> &nbsp;Edit
-    </button>
-    <button
-      href="#"
-      class="btn btn-danger"
-      (click)="deleteProductEvent(product.id)"
-    >
-      <i class="fa fa-solid fa-trash"></i> &nbsp;Delete
-    </button>
+    <div class="d-flex justify-content-between">
+      <button
+        href="#"
+        class="btn btn-success"
+        (click)="addToCartEvent()"
+        title="add to cart"
+      >
+        <i class="fa fa-solid fa-shopping-cart"></i>
+      </button>
+      <button
+        href="#"
+        class="btn btn-primary"
+        routerLink="/products/{{ product.id }}"
+        title="edit product"
+      >
+        <i class="fa fa-solid fa-pencil"></i>
+      </button>
+      <button
+        href="#"
+        class="btn btn-danger"
+        (click)="deleteProductEvent(product.id)"
+        title="delete"
+      >
+        <i class="fa fa-solid fa-trash"></i>
+      </button>
+    </div>
   </div>
 </div>
