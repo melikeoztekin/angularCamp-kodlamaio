@@ -1,3 +1,5 @@
+import { UserForLoginModel } from './../../models/user-for-login-model';
+import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -22,6 +27,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
+    const userForLoginModel: UserForLoginModel = {
+      ...this.loginForm.value,
+    };
+    this._authService.login(userForLoginModel).subscribe((response) => {
+      this._authService.saveAuth(response);
+    });
     console.log(this.loginForm.value);
   }
 }

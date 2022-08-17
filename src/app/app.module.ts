@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CategoriesModule } from './features/categories/categories.module';
 import { CustomersModule } from './features/customers/customers.module';
-import { ProductsModule } from './features/products/products.module';
 import { SharedModule } from './shared/shared.module';
+import { StorageModule } from './core/storage/storage.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     CategoriesModule,
     CustomersModule,
-    ProductsModule,
+    StorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
