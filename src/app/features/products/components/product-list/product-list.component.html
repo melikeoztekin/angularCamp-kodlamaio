@@ -1,0 +1,62 @@
+<div class="container" [ngSwitch]="status">
+  <h1 *ngSwitchCase="'init'">Welcome!</h1>
+  <div
+    *ngSwitchCase="'loading'"
+    class="spinner-border text-primary"
+    role="status"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+  <div *ngSwitchCase="'loaded'">
+    <div *ngIfNot="productList.length === 0">
+      <div class="row" *ngIf="productList.length > 0">
+        <input
+          class="form-control col-12 mb-3"
+          type="text"
+          [(ngModel)]="filterText"
+          placeholder="Search"
+        />
+        <div class="alert alert-success col-6" role="alert">
+          Total product : {{ productList.length }}
+        </div>
+        <div class="alert alert-danger col-6" role="alert">
+          There are <strong>{{ cartItems.length }}</strong> products in the
+          cart.
+        </div>
+      </div>
+
+      <div *ngIf="productList.length == 0 && dataLoaded == true">
+        <div class="alert alert-warning" role="alert">
+          The product was not found.
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          class="col-12 col-sm-12 col-md-6 col-lg-4"
+          *ngFor="let p of productList | searchProductFilter: filterText"
+        >
+          <app-product-card
+            [product]="p"
+            (onBtnClickAddToCart)="addToCart($event)"
+            (onBtnClickDelete)="deleteProductById(p.id)"
+          ></app-product-card>
+        </div>
+      </div>
+
+      <div *ngIf="productList.length > 0">
+        <div
+          class="alert alert-secondary"
+          role="alert"
+          *ngIf="(productList | searchProductFilter: filterText).length == 0"
+        >
+          No Result Found!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *appMultiple="5">melike</div>
+<div *appWelcome="1000; then otherState">Welcome</div>
+<ng-template #otherState>Ürün Yok</ng-template>
